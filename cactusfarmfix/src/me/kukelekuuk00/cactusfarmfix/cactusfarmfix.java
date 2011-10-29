@@ -20,7 +20,7 @@ public class cactusfarmfix extends JavaPlugin {
 	
 	public void onEnable()
 	{
-	log.info("cactus autofarm fix enabled.");
+	log.info("cactus autofarm fix has been enabled.");
 	PluginManager pm = this.getServer().getPluginManager();
 	pm.registerEvent (Event.Type.BLOCK_PHYSICS, blockListener, Event.Priority.Normal, this);	
 	}
@@ -29,6 +29,6 @@ public class cactusfarmfix extends JavaPlugin {
 	 
 	public void onDisable()
 	{
-		log.info("cactus autofarm fix disabled.");
+		log.info("cactus autofarm fix has been disabled.");
 	}
 }
