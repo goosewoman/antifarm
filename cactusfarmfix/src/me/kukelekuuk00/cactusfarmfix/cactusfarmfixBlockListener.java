@@ -45,7 +45,6 @@ public class cactusfarmfixBlockListener extends BlockListener {
 	    AIR_MATERIALS.add(Material.WOODEN_DOOR.getId());
 	    AIR_MATERIALS.add(Material.LADDER.getId());
 	    AIR_MATERIALS.add(Material.RAILS.getId());
-	    AIR_MATERIALS.add(Material.WALL_SIGN.getId());
 	    AIR_MATERIALS.add(Material.LEVER.getId());
 	    AIR_MATERIALS.add(Material.STONE_PLATE.getId());
 	    AIR_MATERIALS.add(Material.IRON_DOOR_BLOCK.getId());
