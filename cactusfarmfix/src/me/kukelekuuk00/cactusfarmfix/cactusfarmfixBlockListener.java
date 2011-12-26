@@ -1,15 +1,14 @@
 package me.kukelekuuk00.cactusfarmfix;
 
-import java.util.logging.Logger;
-
-import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockListener;
-import org.bukkit.event.block.BlockPhysicsEvent;
-import org.bukkit.Material;
-import org.bukkit.block.BlockFace;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Logger;
+
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.event.block.BlockListener;
+import org.bukkit.event.block.BlockPhysicsEvent;
 
 public class cactusfarmfixBlockListener extends BlockListener {
 	Logger log = Logger.getLogger("Minecraft");
@@ -41,21 +40,18 @@ public class cactusfarmfixBlockListener extends BlockListener {
 	    AIR_MATERIALS.add(Material.TORCH.getId());
 	    AIR_MATERIALS.add(Material.REDSTONE_WIRE.getId());
 	    AIR_MATERIALS.add(Material.SEEDS.getId());
-	    AIR_MATERIALS.add(Material.SIGN_POST.getId());
 	    AIR_MATERIALS.add(Material.WOODEN_DOOR.getId());
 	    AIR_MATERIALS.add(Material.LADDER.getId());
 	    AIR_MATERIALS.add(Material.RAILS.getId());
 	    AIR_MATERIALS.add(Material.LEVER.getId());
 	    AIR_MATERIALS.add(Material.STONE_PLATE.getId());
-	    AIR_MATERIALS.add(Material.IRON_DOOR_BLOCK.getId());
 	    AIR_MATERIALS.add(Material.WOOD_PLATE.getId());  
 	    AIR_MATERIALS.add(Material.REDSTONE_TORCH_OFF.getId());
 	    AIR_MATERIALS.add(Material.REDSTONE_TORCH_ON.getId());
 	    AIR_MATERIALS.add(Material.STONE_BUTTON.getId());
 	    AIR_MATERIALS.add(Material.SUGAR_CANE_BLOCK.getId());    
 	    AIR_MATERIALS.add(Material.DIODE_BLOCK_OFF.getId());
-	    AIR_MATERIALS.add(Material.DIODE_BLOCK_ON.getId());    
-	    AIR_MATERIALS.add(Material.TRAP_DOOR.getId());
+	    AIR_MATERIALS.add(Material.DIODE_BLOCK_ON.getId());
 	    AIR_MATERIALS.add(Material.PUMPKIN_STEM.getId());
 	    AIR_MATERIALS.add(Material.MELON_STEM.getId());
 	    AIR_MATERIALS.add(Material.VINE.getId());

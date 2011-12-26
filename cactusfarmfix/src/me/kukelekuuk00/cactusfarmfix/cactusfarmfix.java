@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.logging.Logger;
 
 import org.bukkit.block.Block;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginManager;
