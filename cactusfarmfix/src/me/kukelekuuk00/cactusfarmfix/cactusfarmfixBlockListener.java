@@ -9,19 +9,26 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockPhysicsEvent;
+import org.bukkit.Location;
 
 public class cactusfarmfixBlockListener extends BlockListener {
 	Logger log = Logger.getLogger("Minecraft");
 	
 	
 	public void onBlockPhysics(BlockPhysicsEvent evt) {
+		
 		Block block = evt.getBlock();
 		if(block.getType() == Material.CACTUS) {
-			if(!isSafeCactusBlock(block.getRelative(BlockFace.NORTH, 1)) || !isSafeCactusBlock(block.getRelative(BlockFace.SOUTH, 1)) ||!isSafeCactusBlock(block.getRelative(BlockFace.EAST, 1)) ||!isSafeCactusBlock(block.getRelative(BlockFace.WEST, 1))) { 
+			if(isPistonExtension(block.getRelative(BlockFace.NORTH, 1)) || isPistonExtension(block.getRelative(BlockFace.SOUTH, 1)) ||isPistonExtension(block.getRelative(BlockFace.EAST, 1)) ||isPistonExtension(block.getRelative(BlockFace.WEST, 1))) {
 				evt.setCancelled(true);
-				block.setType(Material.AIR);
 			}
-		}
+			else if(!isSafeCactusBlock(block.getRelative(BlockFace.NORTH, 1)) || !isSafeCactusBlock(block.getRelative(BlockFace.SOUTH, 1)) ||!isSafeCactusBlock(block.getRelative(BlockFace.EAST, 1)) ||!isSafeCactusBlock(block.getRelative(BlockFace.WEST, 1))) { 
+					evt.setCancelled(true);
+					block.setType(Material.AIR);
+				}	
+			}
+
+		
 	}
 
 	  private static final Set<Integer> AIR_MATERIALS = new HashSet<Integer>();
@@ -60,19 +67,30 @@ public class cactusfarmfixBlockListener extends BlockListener {
 	    AIR_MATERIALS.add(Material.LAVA.getId());
 	    AIR_MATERIALS.add(Material.STATIONARY_WATER.getId());
 	    AIR_MATERIALS.add(Material.STATIONARY_LAVA.getId());
-	    AIR_MATERIALS.add(Material.FIRE.getId());
+	    AIR_MATERIALS.add(Material.FIRE.getId());	    
+
 
 	        
 	  };
 	
+	  
+private static final Set<Integer> PISTON_EXTENSION = new HashSet<Integer>();
+	  
+	  static {
+		  PISTON_EXTENSION.add(Material.PISTON_EXTENSION.getId());
+		  PISTON_EXTENSION.add(Material.PISTON_MOVING_PIECE.getId());
+	  };		
 	public boolean isSafeCactusBlock(Block block) {
 		int type = block.getType().getId();
 		if(AIR_MATERIALS.contains(type)) return true;
 		return false;
 	}
-
-
 	
+	public boolean isPistonExtension(Block block) {
+		int type = block.getType().getId();
+		if(PISTON_EXTENSION.contains(type)) return true;
+		return false;
+	}
 	
 	public static cactusfarmfix plugin;
 	 
