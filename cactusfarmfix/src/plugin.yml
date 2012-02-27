@@ -1,3 +1,6 @@
 name: AntiFarm
-main: info.radthorne.kukelekuuk00.AntiFarm
+description: Stops autofarming of Cactus.
 version: 1.2
+main: info.radthorne.kukelekuuk00.AntiFarm.AntiFarm
+author: Kukelekuuk00
+website: http://dev.bukkit.org/server-mods/cactus-autofarming-fix/
