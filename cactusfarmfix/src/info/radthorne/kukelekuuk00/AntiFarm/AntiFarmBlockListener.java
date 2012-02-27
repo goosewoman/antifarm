@@ -1,4 +1,4 @@
-package me.kukelekuuk00.cactusfarmfix;
+package info.radthorne.kukelekuuk00.AntiFarm;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,15 +7,17 @@ import java.util.logging.Logger;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.event.block.BlockListener;
+import org.bukkit.event.Listener;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.Location;
 
-public class cactusfarmfixBlockListener extends BlockListener {
+public class AntiFarmBlockListener implements Listener {
 	Logger log = Logger.getLogger("Minecraft");
 	
-	
-	public void onBlockPhysics(BlockPhysicsEvent evt) {
+	@EventHandler(priority = EventPriority.NORMAL)
+	public void CactusPhysics(BlockPhysicsEvent evt) {
 		
 		Block block = evt.getBlock();
 		if(block.getType() == Material.CACTUS) {
@@ -26,9 +28,7 @@ public class cactusfarmfixBlockListener extends BlockListener {
 					evt.setCancelled(true);
 					block.setType(Material.AIR);
 				}	
-			}
-
-		
+			}	
 	}
 
 	  private static final Set<Integer> AIR_MATERIALS = new HashSet<Integer>();
@@ -92,9 +92,9 @@ private static final Set<Integer> PISTON_EXTENSION = new HashSet<Integer>();
 		return false;
 	}
 	
-	public static cactusfarmfix plugin;
+	public static AntiFarm plugin;
 	 
-	public cactusfarmfixBlockListener(cactusfarmfix instance) {
+	public AntiFarmBlockListener(AntiFarm instance) {
 	    plugin = instance; 
 	}
 }
