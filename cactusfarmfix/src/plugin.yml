@@ -1,6 +1,6 @@
 name: AntiFarm
 description: Stops autofarming of Cactus.
-version: 1.2
+version: 1.4
 main: info.radthorne.kukelekuuk00.AntiFarm.AntiFarm
 author: Kukelekuuk00
 website: http://dev.bukkit.org/server-mods/cactus-autofarming-fix/
@@ -10,5 +10,14 @@ commands:
    afcactus:
       description: Toggles AntiFarm cactus on/off
       usage: /<command>
-      permission: <plugin name>.afcactus
+      permission: antifarm.afcactus
       permission-message: You don't have permission to do this.
+      
+permissions:
+    antifarm.*:
+        description: Gives access to all AntiFarm commands
+        children:
+            antifarm.afcactus: true
+    antifarm.afcactus:
+        description: Allows you to use the "/afcactus" command.
+        default: op
