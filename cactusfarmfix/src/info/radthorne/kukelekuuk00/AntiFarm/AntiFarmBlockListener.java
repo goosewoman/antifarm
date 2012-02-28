@@ -17,19 +17,19 @@ public class AntiFarmBlockListener implements Listener {
 	Logger log = Logger.getLogger("Minecraft");
 	
 	@EventHandler(priority = EventPriority.NORMAL)
-	public void CactusPhysics(BlockPhysicsEvent evt) {
-		
+	public void CactusPhysics(BlockPhysicsEvent evt){
 		Block block = evt.getBlock();
-		if(block.getType() == Material.CACTUS) {
-			if(isPistonExtension(block.getRelative(BlockFace.NORTH, 1)) || isPistonExtension(block.getRelative(BlockFace.SOUTH, 1)) ||isPistonExtension(block.getRelative(BlockFace.EAST, 1)) ||isPistonExtension(block.getRelative(BlockFace.WEST, 1))) {
-				evt.setCancelled(true);
-			}
-			else if(!isSafeCactusBlock(block.getRelative(BlockFace.NORTH, 1)) || !isSafeCactusBlock(block.getRelative(BlockFace.SOUTH, 1)) ||!isSafeCactusBlock(block.getRelative(BlockFace.EAST, 1)) ||!isSafeCactusBlock(block.getRelative(BlockFace.WEST, 1))) { 
+		if (AntiFarm.enabled == true)
+			if(block.getType() == Material.CACTUS) {
+				if(isPistonExtension(block.getRelative(BlockFace.NORTH, 1)) || isPistonExtension(block.getRelative(BlockFace.SOUTH, 1)) ||isPistonExtension(block.getRelative(BlockFace.EAST, 1)) ||isPistonExtension(block.getRelative(BlockFace.WEST, 1))) {
 					evt.setCancelled(true);
-					block.setType(Material.AIR);
-				}	
+				}
+				else if(!isSafeCactusBlock(block.getRelative(BlockFace.NORTH, 1)) || !isSafeCactusBlock(block.getRelative(BlockFace.SOUTH, 1)) ||!isSafeCactusBlock(block.getRelative(BlockFace.EAST, 1)) ||!isSafeCactusBlock(block.getRelative(BlockFace.WEST, 1))) { 
+						evt.setCancelled(true);
+						block.setType(Material.AIR);
+					}	
+				}
 			}	
-	}
 
 	  private static final Set<Integer> AIR_MATERIALS = new HashSet<Integer>();
 	  
