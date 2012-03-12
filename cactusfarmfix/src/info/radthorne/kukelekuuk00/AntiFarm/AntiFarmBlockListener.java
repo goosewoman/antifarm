@@ -1,6 +1,8 @@
 package info.radthorne.kukelekuuk00.AntiFarm;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -11,29 +13,75 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockPhysicsEvent;
+import org.bukkit.event.block.BlockPistonExtendEvent;
+import org.bukkit.event.block.BlockPistonRetractEvent;
+import org.bukkit.event.Cancellable;
 import org.bukkit.Location;
 
-public class AntiFarmBlockListener implements Listener {
+public class AntiFarmBlockListener implements Listener 
+{
 	Logger log = Logger.getLogger("Minecraft");
+	private boolean cancelled;
+	private BlockFace direction;
 	
 	@EventHandler(priority = EventPriority.NORMAL)
-	public void CactusPhysics(BlockPhysicsEvent evt){
+	public void CactusPhysics(BlockPhysicsEvent evt)
+		{
 		Block block = evt.getBlock();
-		if (AntiFarm.enabled == true)
-			if(block.getType() == Material.CACTUS) {
-				if(isPistonExtension(block.getRelative(BlockFace.NORTH, 1)) || isPistonExtension(block.getRelative(BlockFace.SOUTH, 1)) ||isPistonExtension(block.getRelative(BlockFace.EAST, 1)) ||isPistonExtension(block.getRelative(BlockFace.WEST, 1))) {
+		if (AntiFarm.cactusenabled == true)
+			if(block.getType() == Material.CACTUS)
+			{
+				if(isPistonExtension(block.getRelative(BlockFace.NORTH, 1)) || isPistonExtension(block.getRelative(BlockFace.SOUTH, 1)) ||isPistonExtension(block.getRelative(BlockFace.EAST, 1)) ||isPistonExtension(block.getRelative(BlockFace.WEST, 1))) 
+				{
 					evt.setCancelled(true);
+					block.setType(Material.AIR);
 				}
-				else if(!isSafeCactusBlock(block.getRelative(BlockFace.NORTH, 1)) || !isSafeCactusBlock(block.getRelative(BlockFace.SOUTH, 1)) ||!isSafeCactusBlock(block.getRelative(BlockFace.EAST, 1)) ||!isSafeCactusBlock(block.getRelative(BlockFace.WEST, 1))) { 
+				else if(!isSafeCactusBlock(block.getRelative(BlockFace.NORTH, 1)) || !isSafeCactusBlock(block.getRelative(BlockFace.SOUTH, 1)) ||!isSafeCactusBlock(block.getRelative(BlockFace.EAST, 1)) ||!isSafeCactusBlock(block.getRelative(BlockFace.WEST, 1))) 
+				{ 
 						evt.setCancelled(true);
 						block.setType(Material.AIR);
-					}	
-				}
-			}	
+				}	
+			}
+		}
+	
+	@EventHandler(priority = EventPriority.NORMAL)
+	public void ReedPistonRetract(BlockPistonRetractEvent evt) 
+	{
+		if (AntiFarm.reedenabled == true)
+		    if (!evt.isCancelled() && evt.isSticky()) 
+		    {
+		            Block movedBlock = evt.getBlock();
+		            if (movedBlock.getType() == Material.SUGAR_CANE_BLOCK) 
+		            {
+						evt.setCancelled(true);
+		            }
+		    }
+	}
+	@EventHandler(priority = EventPriority.NORMAL)
+	public void ReedPistonExtend(BlockPistonExtendEvent evt) 
+	{
+		List<Block> affectedBlocks = evt.getBlocks();
+		Block block = evt.getBlock();
+		BlockFace dir = evt.getDirection();
+		Block Reed = block.getRelative(dir);
+		if (AntiFarm.reedenabled == true)
+		    if (!evt.isCancelled()) 
+		    {
+		    	for ( Block blockid : affectedBlocks)
+		    	{
+					Material id = blockid.getType();
+		            if (blockid.getType() == Material.SUGAR_CANE_BLOCK)
+		            {
+		            	evt.setCancelled(true);
+		            }
+		    	}
+		    }	
+	}	
 
-	  private static final Set<Integer> AIR_MATERIALS = new HashSet<Integer>();
+	private static final Set<Integer> AIR_MATERIALS = new HashSet<Integer>();
 	  
-	  static {
+	  static 
+	  {
 	    AIR_MATERIALS.add(Material.AIR.getId());
 	    AIR_MATERIALS.add(Material.SAPLING.getId());
 	    AIR_MATERIALS.add(Material.POWERED_RAIL.getId());
@@ -71,30 +119,35 @@ public class AntiFarmBlockListener implements Listener {
 
 
 	        
-	  };
+	  }
 	
 	  
 private static final Set<Integer> PISTON_EXTENSION = new HashSet<Integer>();
 	  
-	  static {
+	static 
+	{
 		  PISTON_EXTENSION.add(Material.PISTON_EXTENSION.getId());
 		  PISTON_EXTENSION.add(Material.PISTON_MOVING_PIECE.getId());
-	  };		
-	public boolean isSafeCactusBlock(Block block) {
+	}		
+	  
+	public boolean isSafeCactusBlock(Block block) 
+	{
 		int type = block.getType().getId();
 		if(AIR_MATERIALS.contains(type)) return true;
 		return false;
 	}
 	
-	public boolean isPistonExtension(Block block) {
+	public boolean isPistonExtension(Block block)
+	{
 		int type = block.getType().getId();
 		if(PISTON_EXTENSION.contains(type)) return true;
 		return false;
 	}
-	
+
 	public static AntiFarm plugin;
 	 
-	public AntiFarmBlockListener(AntiFarm instance) {
+	public AntiFarmBlockListener(AntiFarm instance)
+	{
 	    plugin = instance; 
 	}
 }

@@ -27,29 +27,42 @@ public class AntiFarmCommandExecutor implements CommandExecutor
 		{
 			if(cmd.getName().equalsIgnoreCase("afcactus"))
 			{ 
-					if (AntiFarm.enabled == true)
+					if (AntiFarm.cactusenabled == true)
 				{
-					AntiFarm.enabled = false;
+					AntiFarm.cactusenabled = false;
 					sender.sendMessage(ChatColor.RED + "AntiFarm Cactus has been disabled.");
 				}
 					
-				else if (AntiFarm.enabled == false)
+				else if (AntiFarm.cactusenabled == false)
 				{
-						AntiFarm.enabled = true;
+						AntiFarm.cactusenabled = true;
 					sender.sendMessage(ChatColor.RED + "AntiFarm Cactus has been enabled.");
 				}
 				return true;
 			}
 			
 		}
+		if ((sender instanceof Player) || !(sender instanceof Player))
+		{
+			if(cmd.getName().equalsIgnoreCase("afreed"))
+			{ 
+					if (AntiFarm.reedenabled == true)
+				{
+					AntiFarm.reedenabled = false;
+					sender.sendMessage(ChatColor.RED + "AntiFarm Reed has been disabled.");
+				}
+					
+				else if (AntiFarm.reedenabled == false)
+				{
+						AntiFarm.reedenabled = true;
+					sender.sendMessage(ChatColor.RED + "AntiFarm Reed has been enabled.");
+				}
+				return true;
+			}
 		
-		return false;
-	}
-	
-	protected boolean permit(Player player,String permission){
-		boolean permit = false;
-			permit = player.hasPermission(permission);
-		return permit;
 		}
+		return false;
+	
+	}
 	
 }	

@@ -5,19 +5,26 @@ main: info.radthorne.kukelekuuk00.AntiFarm.AntiFarm
 author: Kukelekuuk00
 website: http://dev.bukkit.org/server-mods/cactus-autofarming-fix/
 
-
 commands:
    afcactus:
       description: Toggles AntiFarm cactus on/off
       usage: /<command>
-      permission: antifarm.afcactus
+      permission: antifarm.cactus
       permission-message: You don't have permission to do this.
-      
+   afreed:
+      description: Toggles AntiFarm reed on/off
+      usage: /<command>
+      permission: antifarm.reed
+      permission-message: You don't have permission to do this.
+            
 permissions:
     antifarm.*:
         description: Gives access to all AntiFarm commands
         children:
             antifarm.afcactus: true
-    antifarm.afcactus:
+    antifarm.cactus:
         description: Allows you to use the "/afcactus" command.
         default: op
+    antifarm.reed:
+        description: Allows you to use the "/afreed" command.
+        default: op        

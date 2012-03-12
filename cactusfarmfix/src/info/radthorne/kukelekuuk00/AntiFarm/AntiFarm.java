@@ -21,8 +21,10 @@ public class AntiFarm extends JavaPlugin {
 	private final AntiFarmBlockListener blockListener = new AntiFarmBlockListener(this);
 	Logger log = Logger.getLogger("Minecraft");
 	private String permission;
-	public static boolean enabled = true;
+	public static boolean cactusenabled = true;
+	public static boolean reedenabled = true;
 	private AntiFarmCommandExecutor afcactusExecutor;
+	private AntiFarmCommandExecutor afreedExecutor;
 	@Override
 	public void onEnable()
 	{
@@ -30,7 +32,9 @@ public class AntiFarm extends JavaPlugin {
 	PluginManager pm = this.getServer().getPluginManager();
 	pm.registerEvents(this.blockListener, this); 
 	afcactusExecutor = new AntiFarmCommandExecutor(this);
+	afreedExecutor = new AntiFarmCommandExecutor(this);
 	getCommand("afcactus").setExecutor(afcactusExecutor);
+	getCommand("afreed").setExecutor(afreedExecutor);
 	}
 	
 	public void onDisable()
