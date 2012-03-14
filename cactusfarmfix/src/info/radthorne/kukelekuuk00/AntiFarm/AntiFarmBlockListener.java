@@ -60,22 +60,15 @@ public class AntiFarmBlockListener implements Listener
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void ReedPistonExtend(BlockPistonExtendEvent evt) 
 	{
-		List<Block> affectedBlocks = evt.getBlocks();
-		Block block = evt.getBlock();
-		BlockFace dir = evt.getDirection();
-		Block Reed = block.getRelative(dir);
 		if (AntiFarm.reedenabled == true)
 		    if (!evt.isCancelled()) 
 		    {
-		    	for ( Block blockid : affectedBlocks)
-		    	{
-					Material id = blockid.getType();
-		            if (blockid.getType() == Material.SUGAR_CANE_BLOCK)
+		    	Block movedBlock = evt.getBlock();
+		            if (movedBlock.getType() == Material.SUGAR_CANE_BLOCK)
 		            {
 		            	evt.setCancelled(true);
 		            }
-		    	}
-		    }	
+		    }
 	}	
 
 	private static final Set<Integer> AIR_MATERIALS = new HashSet<Integer>();

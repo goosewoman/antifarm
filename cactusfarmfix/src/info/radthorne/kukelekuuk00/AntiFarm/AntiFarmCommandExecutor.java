@@ -15,7 +15,8 @@ public class AntiFarmCommandExecutor implements CommandExecutor
 	private AntiFarm plugin;
 	private Permissible p;
  
-	public AntiFarmCommandExecutor(AntiFarm plugin) {
+	public AntiFarmCommandExecutor(AntiFarm plugin) 
+	{
 		this.plugin = plugin;
 	}
  

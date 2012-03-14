@@ -16,7 +16,8 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
-public class AntiFarm extends JavaPlugin {
+public class AntiFarm extends JavaPlugin 
+	{
 	public final HashMap<Player, ArrayList<Block>> cfUsers = new HashMap<Player, ArrayList<Block>>();
 	private final AntiFarmBlockListener blockListener = new AntiFarmBlockListener(this);
 	Logger log = Logger.getLogger("Minecraft");
