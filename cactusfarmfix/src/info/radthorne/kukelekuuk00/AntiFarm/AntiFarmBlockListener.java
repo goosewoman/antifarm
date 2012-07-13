@@ -28,7 +28,7 @@ public class AntiFarmBlockListener implements Listener
 	public void CactusPhysics(BlockPhysicsEvent evt)
 		{
 		Block block = evt.getBlock();
-		if (AntiFarm.cactusenabled == true)
+		if (AntiFarm.cactusenabled)
 			if(block.getType() == Material.CACTUS)
 			{
 				if(isPistonExtension(block.getRelative(BlockFace.NORTH, 1)) || isPistonExtension(block.getRelative(BlockFace.SOUTH, 1)) ||isPistonExtension(block.getRelative(BlockFace.EAST, 1)) ||isPistonExtension(block.getRelative(BlockFace.WEST, 1))) 
@@ -47,7 +47,7 @@ public class AntiFarmBlockListener implements Listener
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void ReedPistonRetract(BlockPistonRetractEvent evt) 
 	{
-		if (AntiFarm.reedenabled == true)
+		if (AntiFarm.reedenabled)
 		    if (!evt.isCancelled() && evt.isSticky()) 
 		    {
 		            Block movedBlock = evt.getBlock();
@@ -60,7 +60,7 @@ public class AntiFarmBlockListener implements Listener
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void ReedPistonExtend(BlockPistonExtendEvent evt) 
 	{
-		if (AntiFarm.reedenabled == true)
+		if (AntiFarm.reedenabled)
 		    if (!evt.isCancelled()) 
 		    {
 		    	Block movedBlock = evt.getBlock();
