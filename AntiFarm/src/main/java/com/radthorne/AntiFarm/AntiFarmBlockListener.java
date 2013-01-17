@@ -23,16 +23,11 @@ class AntiFarmBlockListener implements Listener {
       if (block.getType() == Material.CACTUS) {
         if (isPistonExtension(block.getRelative(BlockFace.NORTH, 1)) || isPistonExtension(block.getRelative(BlockFace.SOUTH, 1)) || isPistonExtension(block.getRelative(BlockFace.EAST, 1)) || isPistonExtension(block.getRelative(BlockFace.WEST, 1))) {
           evt.setCancelled(true);
-          if (block.getRelative(BlockFace.UP).getType() == Material.CACTUS) {
-            block.getRelative(BlockFace.UP).setType(Material.AIR);
-          }
-          if (block.getRelative(BlockFace.UP).getRelative(BlockFace.UP).getType() == Material.CACTUS) {
-            block.getRelative(BlockFace.UP).getRelative(BlockFace.UP).setType(Material.AIR);
-          }
           block.setType(Material.AIR);
         } else if (isNotSafeCactusBlock(block.getRelative(BlockFace.NORTH, 1)) || isNotSafeCactusBlock(block.getRelative(BlockFace.SOUTH, 1)) || isNotSafeCactusBlock(block.getRelative(BlockFace.EAST, 1)) || isNotSafeCactusBlock(block.getRelative(BlockFace.WEST, 1))) {
           evt.setCancelled(true);
           block.setType(Material.AIR);
+
         }
       }
   }
