@@ -1,0 +1,17 @@
+name: AntiFarm
+description: Stops the automatic farming of Cactus and other crops.
+version: 1.5
+main: com.radthorne.AntiFarm.AntiFarm
+author: Kukelekuuk00
+website: http://dev.bukkit.org/server-mods/cactus-autofarming-fix/
+
+commands:
+   afreload:
+      description: Toggles AntiFarm cactus on/off
+      usage: /<command>
+      permission: antifarm.reloadconf
+      permission-message: You don't have permission to do this.
+            
+permissions:
+    antifarm.reloadconf:
+        description: Gives access to the /afreload command.

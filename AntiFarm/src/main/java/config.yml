@@ -1,0 +1,17 @@
+# Set to false if you don't want cactus autofarming disabled.
+cactus: true
+
+# Set to false if you want pistons to be able to destroy cactus.
+cactuspiston: true
+
+# Set to false if you want pistons to be able to destroy reed.
+reed: true
+
+# Set to false if you want pistons to be able to destroy melons(Stems included).
+melon: true
+
+# Set to false if you want pistons to be able to destroy pumpkins(Stems included).
+pumpkin: true
+
+# Set to false if you want pistons to be able to destroy crops. (Wheat, carrots, potatoes)
+crops: true
