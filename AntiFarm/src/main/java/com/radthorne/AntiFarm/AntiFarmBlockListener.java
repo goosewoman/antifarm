@@ -16,7 +16,7 @@ import java.util.Set;
 
 class AntiFarmBlockListener implements Listener {
 
-  @EventHandler(priority = EventPriority.HIGHEST)
+  @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
   public void CactusPhysics(BlockPhysicsEvent evt) {
     Block block = evt.getBlock();
     if (conf.cactusEnabled)
@@ -32,11 +32,8 @@ class AntiFarmBlockListener implements Listener {
       }
   }
 
-  @EventHandler(priority = EventPriority.HIGHEST)
+  @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
   public void PistonExtendEvent(BlockPistonExtendEvent event) {
-    if (event.isCancelled()) {
-      return;
-    }
     Block movedBlock = event.getBlock();
     Block pistonRelative = movedBlock.getRelative(event.getDirection());
     if (conf.reedEnabled) {
