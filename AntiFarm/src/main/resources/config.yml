@@ -15,3 +15,9 @@ pumpkin: true
 
 # Set to false if you want pistons to be able to destroy crops. (Wheat, carrots, potatoes)
 crops: true
+
+# Set to false if you want water to be able to destroy crops.
+watercrops: true
+
+# Set to false if you want water to be able to destroy mushrooms.
+watermushrooms: true

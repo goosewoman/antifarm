@@ -11,6 +11,8 @@ class conf {
   public static boolean cropsEnabled = true;
   public static boolean pumpkinEnabled = true;
   public static boolean melonsEnabled = true;
+  public static boolean waterCropsEnabled = true;
+  public static boolean waterMushroomsEnabled = true;
 
   private final Plugin plugin;
 
@@ -26,6 +28,8 @@ class conf {
     this.pumpkinEnabled = plugin.getConfig().getBoolean("pumpkin");
     this.melonsEnabled = plugin.getConfig().getBoolean("melon");
     this.cropsEnabled = plugin.getConfig().getBoolean("crops");
+    this.waterCropsEnabled = plugin.getConfig().getBoolean("watercrops");
+    this.waterMushroomsEnabled = plugin.getConfig().getBoolean("watermushrooms");
   }
 
   public void reload() {
@@ -35,4 +39,5 @@ class conf {
 
   public void save() {
   }
+
 }

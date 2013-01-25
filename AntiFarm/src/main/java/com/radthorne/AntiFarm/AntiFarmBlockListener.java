@@ -8,6 +8,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 
@@ -15,6 +16,26 @@ import java.util.HashSet;
 import java.util.Set;
 
 class AntiFarmBlockListener implements Listener {
+
+  @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+  public void blockFromToEvent(BlockFromToEvent event) {
+    if (conf.waterCropsEnabled || conf.waterMushroomsEnabled) {
+      if (event.getBlock().getType() == Material.WATER || event.getBlock().getType() == Material.STATIONARY_WATER) {
+        if (conf.waterMushroomsEnabled) {
+          if (event.getToBlock().getType() == Material.RED_MUSHROOM || event.getToBlock().getType() == Material.BROWN_MUSHROOM) {
+            event.setCancelled(true);
+            event.getToBlock().setType(Material.AIR);
+          }
+        }
+        if (conf.waterCropsEnabled) {
+          if (event.getToBlock().getType() == Material.CROPS || event.getToBlock().getType() == Material.CARROT || event.getToBlock().getType() == Material.POTATO) {
+            event.setCancelled(true);
+            event.getToBlock().setType(Material.AIR);
+          }
+        }
+      }
+    }
+  }
 
   @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
   public void CactusPhysics(BlockPhysicsEvent evt) {
