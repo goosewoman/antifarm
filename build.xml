@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AntiFarm" default="jar" basedir=".">
+    <description>
+        AntiFarm build file.
+    </description>
+    
+    <property name="main.dir" value="src/main/"/>
+    <property name="src.dir" value="${main.dir}/java/"/>
+    <property name="resources.dir" value="${main.dir}/resources/"/>
+    <property name="target.dir" value="target"/>
+    <property name="classes.dir" value="${target.dir}/classes/"/>
+    <property name="jar.dir" value="${target.dir}"/>
+    <property name="lib.dir" value="${target.dir}/lib/"/>
+
+    <target name="clean">
+        <delete dir="${target.dir}"/>
+    </target>
+
+    <target name="init" depends="clean">
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${lib.dir}"/>
+    </target>
+    
+    <target name="download" depends="init">
+        <get src="http://dl.bukkit.org/downloads/bukkit/get/02341_1.6.2-R1.0/bukkit.jar" dest="${lib.dir}/bukkit.jar" skipexisting="true"/>
+    </target>
+    
+    <target name="compile" depends="download">
+        <!-- Compile the java code -->
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false" target="1.6" source="1.6">
+            <classpath>
+                <pathelement location="${lib.dir}/bukkit.jar"/>
+            </classpath>
+        </javac>
+    </target>
+    
+    <target name="jar" depends="compile">
+        <!-- Build the jar file -->
+        <jar basedir="${classes.dir}" destfile="${jar.dir}/AntiFarm.jar">
+            <fileset dir="${resources.dir}" includes="plugin.yml"/>
+            <fileset dir="${resources.dir}" includes="config.yml"/>
+        </jar>
+    </target>
+    
+</project>
